@@ -58,6 +58,8 @@ public class MatrixOperationsTest {
                     "Expected -2 * 2 to equal -4");
             assertEquals(6, matrixOperations.multiplyNumbers(-2, -3),
                     "Expected -2 * (-3) to equal 6");
+            /*assertEquals(7, matrixOperations.multiplyNumbers(7, 1),
+                    "Expected 7 * 1 to equal 7");*/
         }
 
         @Test
@@ -162,6 +164,11 @@ public class MatrixOperationsTest {
             double[][] matrixA = {{1, 2, 3}, {4, 5, 6}};
             double[][] matrixB = {{7, 8}, {9, 10}, {11, 12}};
             double[][] expected = {{58, 64}, {139, 154}};
+            /*
+            double[][] matrixA = {{1}};
+            double[][] matrixB = {{1}};
+            double[][] expected = {{1}};
+            */
             assertArrayEquals(expected, matrixOperations.multiply(matrixA, matrixB),
                     "Expected multiplication of matrices to be correct");
         }
