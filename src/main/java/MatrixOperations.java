@@ -1,4 +1,4 @@
-public class MatrixMultiplication {
+public class MatrixOperations {
     public double addNumbers(double a, double b) {
         return a + b;
     }

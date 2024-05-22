@@ -14,12 +14,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class MatrixMultiplicationTest {
-    private MatrixMultiplication matrixMultiplication;
+public class MatrixOperationsTest {
+    private MatrixOperations matrixOperations;
 
     @BeforeEach
     public void setUp() {
-        matrixMultiplication = new MatrixMultiplication();
+        matrixOperations = new MatrixOperations();
     }
 
     @Nested
@@ -28,11 +28,11 @@ public class MatrixMultiplicationTest {
         @Tag("NumbersOperations")
         @DisplayName("Check addition of numbers")
         public void testAddNumbers() {
-            assertEquals(5, matrixMultiplication.addNumbers(2, 3),
+            assertEquals(5, matrixOperations.addNumbers(2, 3),
                     "Expected 2 + 3 to equal 5");
-            assertEquals(0, matrixMultiplication.addNumbers(-2, 2),
+            assertEquals(0, matrixOperations.addNumbers(-2, 2),
                     "Expected -2 + 2 to equal 0");
-            assertEquals(-5, matrixMultiplication.addNumbers(-2, -3),
+            assertEquals(-5, matrixOperations.addNumbers(-2, -3),
                     "Expected -2 + (-3) to equal -5");
         }
 
@@ -40,11 +40,11 @@ public class MatrixMultiplicationTest {
         @Tag("NumbersOperations")
         @DisplayName("Check subtraction of numbers")
         public void testSubtractNumbers() {
-            assertEquals(-1, matrixMultiplication.subtractNumbers(2, 3),
+            assertEquals(-1, matrixOperations.subtractNumbers(2, 3),
                     "Expected 2 - 3 to equal -1");
-            assertEquals(0, matrixMultiplication.subtractNumbers(2, 2),
+            assertEquals(0, matrixOperations.subtractNumbers(2, 2),
                     "Expected 2 - 2 to equal 0");
-            assertEquals(1, matrixMultiplication.subtractNumbers(-2, -3),
+            assertEquals(1, matrixOperations.subtractNumbers(-2, -3),
                     "Expected -2 - (-3) to equal 1");
         }
 
@@ -52,11 +52,11 @@ public class MatrixMultiplicationTest {
         @Tag("NumbersOperations")
         @DisplayName("Check multiplication of numbers")
         public void testMultiplyNumbers() {
-            assertEquals(6, matrixMultiplication.multiplyNumbers(2, 3),
+            assertEquals(6, matrixOperations.multiplyNumbers(2, 3),
                     "Expected 2 * 3 to equal 6");
-            assertEquals(-4, matrixMultiplication.multiplyNumbers(-2, 2),
+            assertEquals(-4, matrixOperations.multiplyNumbers(-2, 2),
                     "Expected -2 * 2 to equal -4");
-            assertEquals(6, matrixMultiplication.multiplyNumbers(-2, -3),
+            assertEquals(6, matrixOperations.multiplyNumbers(-2, -3),
                     "Expected -2 * (-3) to equal 6");
         }
 
@@ -64,11 +64,11 @@ public class MatrixMultiplicationTest {
         @Tag("NumbersOperations")
         @DisplayName("Check division of numbers")
         public void testDivideNumbers() {
-            assertEquals(2, matrixMultiplication.divideNumbers(6, 3),
+            assertEquals(2, matrixOperations.divideNumbers(6, 3),
                     "Expected 6 / 3 to equal 2");
-            assertEquals(-1, matrixMultiplication.divideNumbers(-2, 2),
+            assertEquals(-1, matrixOperations.divideNumbers(-2, 2),
                     "Expected -2 / 2 to equal -1");
-            assertEquals(1, matrixMultiplication.divideNumbers(-2, -2),
+            assertEquals(1, matrixOperations.divideNumbers(-2, -2),
                     "Expected -2 / (-2) to equal 1");
         }
 
@@ -76,7 +76,7 @@ public class MatrixMultiplicationTest {
         @Tag("NumbersOperations")
         @DisplayName("Check division by zero")
         public void testDivideNumbersByZero() {
-            assertThrows(IllegalArgumentException.class, () -> matrixMultiplication.divideNumbers(6, 0),
+            assertThrows(IllegalArgumentException.class, () -> matrixOperations.divideNumbers(6, 0),
                     "Expected divideNumbers(6, 0) to throw IllegalArgumentException");
         }
 
@@ -84,7 +84,7 @@ public class MatrixMultiplicationTest {
         @Tag("NumbersOperations")
         @DisplayName("Check if number is not positive")
         public void testZeroIsNotPositive() {
-            assertFalse(matrixMultiplication.isPositive(0),
+            assertFalse(matrixOperations.isPositive(0),
                     "Expected 0 to not be positive");
         }
 
@@ -92,7 +92,7 @@ public class MatrixMultiplicationTest {
         @Tag("NumbersOperations")
         @DisplayName("Check if number is not negative")
         public void testZeroIsNotNegative() {
-            assertFalse(matrixMultiplication.isNegative(0),
+            assertFalse(matrixOperations.isNegative(0),
                     "Expected 0 to not be negative");
         }
 
@@ -100,7 +100,7 @@ public class MatrixMultiplicationTest {
         @ValueSource(doubles = {134, 2, 45})
         @Tag("NumbersOperations")
         public void testIsPositive(double number) {
-            assertTrue(matrixMultiplication.isPositive(number),
+            assertTrue(matrixOperations.isPositive(number),
                     "Expected " + number + " to be positive");
         }
 
@@ -108,7 +108,7 @@ public class MatrixMultiplicationTest {
         @ValueSource(doubles = {-11, -785, -31})
         @Tag("NumbersOperations")
         public void testIsNegative(double number) {
-            assertTrue(matrixMultiplication.isNegative(number),
+            assertTrue(matrixOperations.isNegative(number),
                     "Expected " + number + " to be negative");
         }
     }
@@ -121,7 +121,7 @@ public class MatrixMultiplicationTest {
         public void testCanMultiplyWithCompatibleMatrices() {
             double[][] matrixA = fillMatrix(2, 3);
             double[][] matrixB = fillMatrix(3, 2);
-            assertTrue(matrixMultiplication.canMultiply(matrixA, matrixB),
+            assertTrue(matrixOperations.canMultiply(matrixA, matrixB),
                     "Expected canMultiply to return true for compatible matrices");
         }
 
@@ -131,7 +131,7 @@ public class MatrixMultiplicationTest {
         public void testCanMultiplyWithIncompatibleMatrices() {
             double[][] matrixA = fillMatrix(2, 3);
             double[][] matrixB = fillMatrix(2, 2);
-            assertFalse(matrixMultiplication.canMultiply(matrixA, matrixB),
+            assertFalse(matrixOperations.canMultiply(matrixA, matrixB),
                     "Expected canMultiply to return false for incompatible matrices");
         }
 
@@ -141,7 +141,7 @@ public class MatrixMultiplicationTest {
         public void testCanAddOrSubtractWithSameSizeMatrices() {
             double[][] matrixA = fillMatrix(2, 3);
             double[][] matrixB = fillMatrix(2, 3);
-            assertTrue(matrixMultiplication.canAddOrSubtract(matrixA, matrixB),
+            assertTrue(matrixOperations.canAddOrSubtract(matrixA, matrixB),
                     "Expected canAddOrSubtract to return true for matrices of the same size");
         }
 
@@ -151,7 +151,7 @@ public class MatrixMultiplicationTest {
         public void testCanAddOrSubtractWithDifferentSizeMatrices() {
             double[][] matrixA = fillMatrix(2, 3);
             double[][] matrixB = fillMatrix(2, 2);
-            assertFalse(matrixMultiplication.canAddOrSubtract(matrixA, matrixB),
+            assertFalse(matrixOperations.canAddOrSubtract(matrixA, matrixB),
                     "Expected canAddOrSubtract to return false for matrices of different sizes");
         }
 
@@ -162,7 +162,7 @@ public class MatrixMultiplicationTest {
             double[][] matrixA = {{1, 2, 3}, {4, 5, 6}};
             double[][] matrixB = {{7, 8}, {9, 10}, {11, 12}};
             double[][] expected = {{58, 64}, {139, 154}};
-            assertArrayEquals(expected, matrixMultiplication.multiply(matrixA, matrixB),
+            assertArrayEquals(expected, matrixOperations.multiply(matrixA, matrixB),
                     "Expected multiplication of matrices to be correct");
         }
 
@@ -172,7 +172,7 @@ public class MatrixMultiplicationTest {
         public void testMultiplyWithIncompatibleMatrices() {
             double[][] matrixA = {{1, 2, 3}, {4, 5, 6}};
             double[][] matrixB = {{1, 2}, {3, 4}};
-            assertThrows(IllegalArgumentException.class, () -> matrixMultiplication.multiply(matrixA, matrixB),
+            assertThrows(IllegalArgumentException.class, () -> matrixOperations.multiply(matrixA, matrixB),
                     "Expected multiply to throw IllegalArgumentException for incompatible matrices");
         }
 
@@ -183,7 +183,7 @@ public class MatrixMultiplicationTest {
             double[][] matrixA = {{1, 2, 3}, {4, 5, 6}};
             double[][] matrixB = {{7, 8, 9}, {10, 11, 12}};
             double[][] expected = {{8, 10, 12}, {14, 16, 18}};
-            assertArrayEquals(expected, matrixMultiplication.add(matrixA, matrixB),
+            assertArrayEquals(expected, matrixOperations.add(matrixA, matrixB),
                     "Expected addition of matrices to be correct");
         }
 
@@ -193,7 +193,7 @@ public class MatrixMultiplicationTest {
         public void testAddWithDifferentSizeMatrices() {
             double[][] matrixA = {{1, 2, 3}, {4, 5, 6}};
             double[][] matrixB = {{1, 2}, {3, 4}};
-            assertThrows(IllegalArgumentException.class, () -> matrixMultiplication.add(matrixA, matrixB),
+            assertThrows(IllegalArgumentException.class, () -> matrixOperations.add(matrixA, matrixB),
                     "Expected add to throw IllegalArgumentException for matrices of different sizes");
         }
 
@@ -204,7 +204,7 @@ public class MatrixMultiplicationTest {
             double[][] matrixA = {{1, 2, 3}, {4, 5, 6}};
             double[][] matrixB = {{7, 8, 9}, {10, 11, 12}};
             double[][] expected = {{-6, -6, -6}, {-6, -6, -6}};
-            assertArrayEquals(expected, matrixMultiplication.subtract(matrixA, matrixB),
+            assertArrayEquals(expected, matrixOperations.subtract(matrixA, matrixB),
                     "Expected subtraction of matrices to be correct");
         }
 
@@ -214,7 +214,7 @@ public class MatrixMultiplicationTest {
         public void testSubtractWithDifferentSizeMatrices() {
             double[][] matrixA = {{1, 2, 3}, {4, 5, 6}};
             double[][] matrixB = {{1, 2}, {3, 4}};
-            assertThrows(IllegalArgumentException.class, () -> matrixMultiplication.subtract(matrixA, matrixB),
+            assertThrows(IllegalArgumentException.class, () -> matrixOperations.subtract(matrixA, matrixB),
                     "Expected subtract to throw IllegalArgumentException for matrices of different sizes");
         }
 
